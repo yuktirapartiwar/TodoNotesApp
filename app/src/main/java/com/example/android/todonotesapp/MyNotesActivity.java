@@ -2,25 +2,37 @@ package com.example.android.todonotesapp;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.android.todonotesapp.adapter.NotesAdapter;
+import com.example.android.todonotesapp.clicklisteners.ItemClickListener;
+import com.example.android.todonotesapp.model.Notes;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
 
 public class MyNotesActivity extends AppCompatActivity {
 
     String fullName;
     FloatingActionButton fabAddNotes;
-    TextView textViewTitle, textViewDescription;
     SharedPreferences sharedPreferences;
+    RecyclerView recyclerViewNotes;
+    ArrayList<Notes> notesList = new ArrayList<>(  );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,19 +74,51 @@ public class MyNotesActivity extends AppCompatActivity {
 
             public void onClick(View view) {
 
-                textViewTitle.setText( editTextTitle.getText().toString() );
-                textViewDescription.setText( editTextDescription.getText().toString() );
+                String title = editTextTitle.getText().toString();
+                String description = editTextDescription.getText().toString();
+                if(!TextUtils.isEmpty( title )&& !TextUtils.isEmpty( description )) {
+                    Notes notes = new Notes();
+                    notes.setTitle( title );
+                    notes.setDescription( description );
+                    notesList.add( notes );
+                }else {
+                    Toast.makeText( MyNotesActivity.this,"Title or Description can't be empty.",Toast.LENGTH_SHORT ).show();
+                }
+
+                setupRecyclerView();
                 dialog.hide();
             }
+            
 
         } );
         dialog.show();
     }
 
+    private void setupRecyclerView() {
+
+        ItemClickListener itemClickListener = new ItemClickListener() {
+            @Override
+            public void onClick(Notes notes) {
+                Intent intent = new Intent( MyNotesActivity.this, DetailActivity.class );
+                intent.putExtra( AppConstant.TITLE, notes.getTitle() );
+                intent.putExtra( AppConstant.DESCRIPTION, notes.getDescription());
+                startActivity(intent);
+
+            }
+            
+        };
+
+        NotesAdapter notesAdapter = new NotesAdapter( notesList, itemClickListener );
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager( MyNotesActivity.this );
+        linearLayoutManager.setOrientation( RecyclerView.VERTICAL );
+        recyclerViewNotes.setLayoutManager( linearLayoutManager );
+        recyclerViewNotes.setAdapter( notesAdapter );
+    }
+
     private void bindView() {
         fabAddNotes = findViewById( R.id.fabAddNotes );
-        textViewTitle = findViewById( R.id.textViewTitle );
-        textViewDescription = findViewById( R.id.textViewDescription );
+        recyclerViewNotes = findViewById( R.id.recyclerViewNotes );
+
     }
 
     private void getIntentData() {

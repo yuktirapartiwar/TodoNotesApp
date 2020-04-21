@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextFullName = findViewById( R.id.editTextFullName );
         editTextUserName = findViewById( R.id.editTextUserName );
         buttonLogin = findViewById( R.id.buttonLogin );
+
         setupSharedPreferences();
 
         View.OnClickListener clickAction = new View.OnClickListener() {
@@ -48,14 +49,14 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
 
-            private void saveLoginStatus() {
-                editor = sharedPreferences.edit();
-                editor.putBoolean( PrefConstant.IS_LOGGED_IN,true );
-                editor.apply();
-            }
         };
         buttonLogin.setOnClickListener(clickAction);
 }
+    private void saveLoginStatus() {
+        editor = sharedPreferences.edit();
+        editor.putBoolean( PrefConstant.IS_LOGGED_IN, true );
+        editor.apply();
+    }
 
     private void saveFullName(String fullName) {
         editor = sharedPreferences.edit();
