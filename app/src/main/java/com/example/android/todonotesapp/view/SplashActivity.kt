@@ -1,10 +1,12 @@
-package com.example.android.todonotesapp
+package com.example.android.todonotesapp.view
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.android.todonotesapp.utils.PrefConstant
+import com.example.android.todonotesapp.R
 
 class SplashActivity : AppCompatActivity() {
     lateinit var sharedPreferences : SharedPreferences

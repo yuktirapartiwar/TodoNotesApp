@@ -1,4 +1,4 @@
-package com.example.android.todonotesapp
+package com.example.android.todonotesapp.view
 
 import android.content.Context
 import android.content.Intent
@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.android.todonotesapp.utils.AppConstant
+import com.example.android.todonotesapp.utils.PrefConstant
+import com.example.android.todonotesapp.R
 
 class LoginActivity :AppCompatActivity() {
     lateinit var editTextFullName: EditText

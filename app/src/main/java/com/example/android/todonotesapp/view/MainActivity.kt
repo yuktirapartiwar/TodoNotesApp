@@ -1,8 +1,9 @@
-package com.example.android.todonotesapp
+package com.example.android.todonotesapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
+import com.example.android.todonotesapp.R
 
 class MainActivity : AppCompatActivity() {
 

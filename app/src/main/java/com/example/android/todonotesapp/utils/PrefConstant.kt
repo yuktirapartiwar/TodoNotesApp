@@ -1,4 +1,4 @@
-package com.example.android.todonotesapp
+package com.example.android.todonotesapp.utils
 
 object PrefConstant {
     var SHARED_PREFERENCE_NAME = "notes_app_pref"
