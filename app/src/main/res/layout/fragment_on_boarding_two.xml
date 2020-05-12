@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_dark"
+    android:background="#ff6363"
     tools:context=".onboarding.OnBoardingOneFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -50,7 +50,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginBottom="32dp"
-        android:src="@drawable/ic_checklist"
+        android:src="@drawable/ic_camera"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

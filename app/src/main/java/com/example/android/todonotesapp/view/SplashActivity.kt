@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.android.todonotesapp.utils.PrefConstant
 import com.example.android.todonotesapp.R
 import com.example.android.todonotesapp.onboarding.OnBoardingActivity
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.iid.FirebaseInstanceId
+//import com.google.android.gms.tasks.OnCompleteListener
+//import com.google.firebase.iid.FirebaseInstanceId
 
 class SplashActivity : AppCompatActivity() {
     lateinit var sharedPreferences : SharedPreferences
@@ -20,26 +20,26 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         setupSharedPreferences()
         checkLoginStatus()
-        getFCMToken()
+       // getFCMToken()
     }
 
-    private fun getFCMToken() {
-        FirebaseInstanceId.getInstance().instanceId
-                .addOnCompleteListener(OnCompleteListener { task ->
-                    if (!task.isSuccessful) {
-                        Log.w("SplashActivity", "getInstanceId failed", task.exception)
-                        return@OnCompleteListener
-                    }
-
-                    // Get new Instance ID token
-                    val token = task.result?.token
-
-                    // Log and toast
-                    //val msg = getString(R.string.msg_token_fmt, token)
-                    Log.d("SplashActivity", token)
-                    Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
-                })
-    }
+//    private fun getFCMToken() {
+//        FirebaseInstanceId.getInstance().instanceId
+//                .addOnCompleteListener(OnCompleteListener { task ->
+//                    if (!task.isSuccessful) {
+//                        Log.w("SplashActivity", "getInstanceId failed", task.exception)
+//                        return@OnCompleteListener
+//                    }
+//
+//                    // Get new Instance ID token
+//                    val token = task.result?.token
+//
+//                    // Log and toast
+//                    //val msg = getString(R.string.msg_token_fmt, token)
+//                    Log.d("SplashActivity", token)
+//                    Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+//                })
+//    }
 
     private fun checkLoginStatus() {
 
@@ -57,6 +57,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+        finish()
     }
 
     private fun setupSharedPreferences() {

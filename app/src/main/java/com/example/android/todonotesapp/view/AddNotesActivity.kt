@@ -97,6 +97,10 @@ class AddNotesActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
     private fun setupDialog() {
         val view = LayoutInflater.from(this).inflate(R.layout.dialog_selector,null)
         val textViewCamera : TextView = view.findViewById(R.id.textViewCamera)
